@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Diary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #diaryApp {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .addEntry {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .clearAll {
+            background-color: #2196F3;
+            color: white;
+        }
+        .deleteEntry {
+            background-color: #f44336;
+            color: white;
+            float: right;
+        }
+        .entry {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div id="diaryApp">
+        <h2>My Diary</h2>
+        <textarea id="diaryEntry" placeholder="Write your diary entry here..."></textarea>
+        <div>
+            <button class="addEntry" onclick="addEntry()">Add Entry</button>
+            <button class="clearAll" onclick="clearAllEntries()">Clear All Entries</button>
+        </div>
+        <div id="entriesContainer"></div>
+    </div>
+
+    <script>
+        function addEntry() {
+            const entryText = document.getElementById('diaryEntry').value;
+            if (entryText.trim() === '') return;
+
+            const entryDiv = document.createElement('div');
+            entryDiv.className = 'entry';
+            entryDiv.innerHTML = `
+                ${entryText}
+                <button class="deleteEntry" onclick="deleteEntry(this)">Delete</button>
+            `;
+            document.getElementById('entriesContainer').appendChild(entryDiv);
+            document.getElementById('diaryEntry').value = '';
+        }
+
+        function clearAllEntries() {
+            document.getElementById('entriesContainer').innerHTML = '';
+        }
+
+        function deleteEntry(button) {
+            const entryDiv = button.parentElement;
+            entryDiv.remove();
+        }
+    </script>
+</body>
+</html>

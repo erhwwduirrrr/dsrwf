@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Records</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Employee Records</h2>
+
+<table id="employeeTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Skills</th>
+            <th>Is Manager?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Employee records will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+// Sample JSON data
+var employees = [
+    { "ID": 1, "Name": "Nathan", "Age": 20, "Department": "Engineering", "Skills": "JavaScript, React, Node.js", "IsManager": "No" },
+    { "ID": 2, "Name": "Morant", "Age": 20, "Department": "Marketing", "Skills": "SEO, Content Writing, Analytics", "IsManager": "Yes" },
+    { "ID": 3, "Name": "Curry", "Age": 20, "Department": "Sales", "Skills": "Negotiation, CRM, Public Speaking", "IsManager": "No" }
+];
+
+// Function to save employees data to localStorage
+function saveToLocalStorage(data) {
+    localStorage.setItem('employees', JSON.stringify(data));
+}
+
+// Function to retrieve employees data from localStorage
+function getFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('employees')) || [];
+}
+
+// Function to display employees data on the webpage
+function displayEmployees() {
+    var employeesData = getFromLocalStorage();
+    var tableBody = document.getElementById('employeeTable').getElementsByTagName('tbody')[0];
+    tableBody.innerHTML = ''; // Clear existing table data
+
+    employeesData.forEach(function(employee) {
+        var row = tableBody.insertRow();
+        row.insertCell(0).textContent = employee.ID;
+        row.insertCell(1).textContent = employee.Name;
+        row.insertCell(2).textContent = employee.Age;
+        row.insertCell(3).textContent = employee.Department;
+        row.insertCell(4).textContent = employee.Skills;
+        row.insertCell(5).textContent = employee.IsManager;
+    });
+}
+
+// Save sample data to localStorage
+saveToLocalStorage(employees);
+
+// Display employees data from localStorage
+displayEmployees();
+</script>
+
+</body>
+</html>

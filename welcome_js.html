@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+</head>
+<body>
+    <h2>Hello <span id="username"></span></h2>
+    <button onclick="logout()">Logout</button>
+    <script>
+        document.getElementById('username').textContent = sessionStorage.getItem('username');
+
+        function logout() {
+            sessionStorage.removeItem('username');
+            window.location.href = 'login_js.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Family Records</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Family Records</h2>
+
+<table id="familyTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Department</th>
+            <th>Skills</th>
+            <th>Is Manager?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Records will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+   
+    function loadData() {
+    localStorage.clear(); 
+    if (localStorage.getItem('familyRecords')) {
+        displayRecords(JSON.parse(localStorage.getItem('familyRecords')));
+    } else {
+        fetch('family.json')
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('familyRecords', JSON.stringify(data));
+                displayRecords(data);
+            })
+            .catch(error => console.error('Error loading the family.json file:', error));
+    }
+}
+    // Function to load data from localStorage or JSON file
+    function loadData() {
+        // Check if data is already in localStorage
+        if (localStorage.getItem('familyRecords')) {
+            displayRecords(JSON.parse(localStorage.getItem('familyRecords')));
+        } else {
+            // Fetch data from JSON file and save it to localStorage
+            fetch('family.json')
+                .then(response => response.json())
+                .then(data => {
+                    localStorage.setItem('familyRecords', JSON.stringify(data));
+                    displayRecords(data);
+                })
+                .catch(error => console.error('Error loading the family.json file:', error));
+        }
+    }
+
+    // Function to display records in the table
+    function displayRecords(records) {
+        const tableBody = document.getElementById('familyTable').getElementsByTagName('tbody')[0];
+        tableBody.innerHTML = ''; // Clear existing records
+        records.forEach(record => {
+            const row = tableBody.insertRow();
+            row.insertCell(0).textContent = record.ID;
+            row.insertCell(1).textContent = record.Name;
+            row.insertCell(2).textContent = record.Age;
+            row.insertCell(3).textContent = record.Department;
+            row.insertCell(4).textContent = record.Skills;
+            row.insertCell(5).textContent = record.IsManager;
+        });
+    }
+
+    // Load data when the page loads
+    window.onload = loadData;
+</script>
+
+</body>
+</html>

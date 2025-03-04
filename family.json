@@ -1,0 +1,9 @@
+[
+    {"ID": 1, "Name": "Nathan", "Age": 20, "Department": "Engineering", "Skills": "JavaScript, React, Node.js", "IsManager": "No"},
+    {"ID": 2, "Name": "Morant", "Age": 21, "Department": "Marketing", "Skills": "SEO, Content Writing, Analytics", "IsManager": "Yes"},
+    {"ID": 3, "Name": "Curry", "Age": 19, "Department": "Sales", "Skills": "Negotiation, CRM, Public Speaking", "IsManager": "No"},
+    {"ID": 4, "Name": "Johnson", "Age": 29, "Department": "HR", "Skills": "Recruitment, Employee Relations, Benefits", "IsManager": "No"},
+    {"ID": 5, "Name": "Mikey", "Age": 22, "Department": "IT", "Skills": "Network Administration, Cybersecurity, Data Analysis", "IsManager": "Yes"},
+    {"ID": 6, "Name": "Emma Davis", "Age": 33, "Department": "Accounting", "Skills": "Financial Analysis, Budgeting, Taxation", "IsManager": "No"},
+    {"ID": 7, "Name": "Ton", "Age": 25, "Department": "Your Department", "Skills": "Your Skills", "IsManager": "No"}
+]
